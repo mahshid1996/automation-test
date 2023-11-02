@@ -1,6 +1,9 @@
 *** Settings ***
 Library    SeleniumLibrary
 Suite Teardown    Close All Browsers
+Resource    ../Resources/common.robot
+Resource    ../Resources/menu/menu.robot
+Resource    ../Resources/menu/news.robot
 
 *** Variables ***
 
@@ -9,19 +12,16 @@ Open FreeCodeCamp, Sign In, and Open News Page
     [Documentation]    Test for opening FreeCodeCamp, signing in, clicking "News," and opening the news page.
     [Tags]    Test
 
-    Open Browser    https://www.freecodecamp.org/    chrome
-    Maximize Browser Window
+    #OPening web page
+    Begin web test
 
-    Wait Until Page Contains Element    xpath=//button[@id='toggle-button-nav']
-
-    Click Element    xpath=//button[@id='toggle-button-nav']
-
-    # Wait for the menu to expand and load.
-    Sleep    5s
-
+    #click on the menu
+    verify the news item
+    Click on menu item
+    Click on news item of menu
 
     # Use JavaScript to click the 'News' link.
-    Execute JavaScript    document.querySelector("a[href*='news']").click()
+    
 
     # Continue with your test steps on the news page.
 
